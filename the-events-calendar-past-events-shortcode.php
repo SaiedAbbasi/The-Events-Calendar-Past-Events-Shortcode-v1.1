@@ -69,7 +69,7 @@ class Events_Calendar_Past_Events_Shortcode
 			'limit' => 15,
 			'eventdetails' => 'true',
 			'venue' => 'false',
-			'message' => 'There are no upcoming events at this time.',
+			'message' => 'There are recent events to display.',
 			'order' => 'ASC',
 			'viewall' => 'false',
 			'excerpt' => 'true',
@@ -111,19 +111,19 @@ class Events_Calendar_Past_Events_Shortcode
 			foreach( $posts as $post ) :
 				setup_postdata( $post );
 				$output .= '<div class="type-tribe_events post-396 tribe-clearfix tribe-events-category-documentary-feature tribe-events-category-gay tribe-events-venue-372 tribe-events-last"><li class="ecspe-event">';
-					$output .= '<h2 class="tribe-events-list-event-title entry-title summary">' .
-									'<a href="' . tribe_get_event_link() . '" rel="bookmark">' . get_the_title() . '</a>';
-            
-          if ( tribe_get_custom_field( 'Member Only' ) ) {
-						$output .= '<img src="' . tribe_get_custom_field( 'Member Only' ) . '" rel="bookmark">';
+					if ( tribe_get_custom_field( 'Screening Type' ) ) {
+						$output .= '<p style="font-weight:700;padding-bottom:0;">' . tribe_get_custom_field( 'Screening Type' ) . '</p>';	
 					}
+					$output .= '<h2 class="tribe-events-list-event-title entry-title summary">' .
+									'<a class="url" href="' . tribe_get_event_link() . '" rel="bookmark">' . get_the_title() . '</a>';
+            
 								$output .= '</h2>';
 
           if( self::isValid($ecspe_eventdetails) ) {
 						$output .= '<div class="tribe-events-event-meta vcard">
 						  <div class="author  location">
 						    <div class="updated published time-details">
-						      <span class="tribe-event-date-start">' . tribe_events_event_schedule_details() . '</span>
+						      <span class="custom_list_date">' . tribe_events_event_schedule_details() . '</span>
 						    </div>
 						  </div>  
 						</div>';
